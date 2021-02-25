@@ -1,0 +1,286 @@
+﻿Protected Sub DefectDim_ByModel_new(ByVal Isdaily As Boolean, ByVal S_Date As Date, ByVal E_Date As Date)
+
+        Dim conn As OleDbConnection
+        Dim adapter As OleDbDataAdapter
+        Dim ds As New DataSet
+        Dim tb As DataTable
+        Dim Target As Integer
+        Dim nn As Date = Now
+
+        Dim conn_string, mySql As String
+        Dim i, j, k, l As Integer
+        Dim path As String
+        Dim Month_shift, Month_diff As Integer
+
+        Dim myrow As TableRow
+        Dim mycell As TableCell
+        Dim S_Date_String, E_Date_String As String
+
+        Dim datalabels() As String
+        Dim Is_ratio() As Boolean
+        Dim BColor_ind() As String = New String() {"window.chartColors.green", "window.chartColors.red", "window.chartColors.blue", "window.chartColors.orange", "window.chartColors.yellow", "window.chartColors.purple", "window.chartColors.grey", "window.chartColors.yellowgreen"}
+        Dim BColor() As String
+        Dim chartType() As String
+        Dim yaxis() As String
+
+        Dim Xlabel()() As String
+        Dim data()() As Double
+
+        Dim cstext As New StringBuilder()
+
+        If datepicker_E.Text = "" Or datepicker_S.Text = "" Then
+            E_Date_String = Format(nn, "yyyyMMddHH00")
+            S_Date_String = Format(DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")
+        Else
+            S_Date_String = Format(S_Date, "yyyyMMddHH00")
+            E_Date_String = Format(E_Date, "yyyyMMddHH00")
+        End If
+
+        Month_diff = DateDiff(DateInterval.Day, E_Date, S_Date)
+
+        mySql = ""
+        mySql = mySql & " Select RecipeNo,Recipe "
+        mySql = mySql & " From History "
+        mySql = mySql & " Where Recipe In "
+        mySql = mySql & "    ( "
+        mySql = mySql & "    Select Min(Recipe) As aa1 "
+        mySql = mySql & "    From History "
+        mySql = mySql & "    Where val(TimeA) >= " & S_Date_String & " "
+        mySql = mySql & "    And   val(TimeA) <= " & E_Date_String & " "
+        mySql = mySql & "    Group by RecipeNo "
+        mySql = mySql & "    ) "
+        mySql = mySql & " Group by RecipeNo, Recipe "
+
+        For Month_shift = 0 To Month_diff
+
+            Dim tmp_nn As Date = DateAdd(DateInterval.Month, Month_shift, S_Date)
+
+            path = Path_ServerData & "" & Format(tmp_nn, "yyyyMM") & "DefectDimInfo.mdb"
+
+            If File.Exists(path) Then
+
+                conn_string = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & path & ";"
+                conn = New OleDbConnection(conn_string)
+                conn.Open()
+
+                adapter = New OleDbDataAdapter(mySql, conn)
+                ds.Reset()
+                adapter.Fill(ds)
+                adapter.Dispose()
+                conn.Close()
+            End If
+        Next
+
+        Dim tb_recipe As DataTable = tb.DefaultView.ToTable(True, "RecipeNo")
+
+        Try
+
+            Dim Recipe_count As Integer = tb_recipe.Rows.Count
+            Dim Recipe_matrix(Recipe_count - 1) As String, RecipeNo_Matrix(Recipe_count - 1) As String
+
+            For i = 0 To tb_recipe.Rows.Count - 1
+                RecipeNo_Matrix(i) = tb.Rows(i).Item("RecipeNo")
+                For j = 0 To tb.Rows.Count - 1
+                    If tb.Rows(j).Item("RecipeNo") = tb_recipe.Rows(i).Item(0) Then
+                        Recipe_matrix(i) = Trim(tb_recipe.Rows(j).Item("Recipe"))
+                    End If
+                Next
+            Next
+
+            '------------------------------------------------------------v
+            Dim Recipe_shift As Integer
+
+            For Recipe_i = 0 To Recipe_count - 1
+
+                mySql = ""
+                mySql = mySql & "   select  *"
+                mySql = mySql & "   from ("
+                'Eqp Count
+                mySql = mySql & "   select  count(Dis_eqp_tool)"
+                mySql = mySql & "   from ("
+                mySql = mySql & "   select distinct( eqp_tool) as Dis_eqp_tool"
+                mySql = mySql & "   from " & mySql _from
+                mySql = mySql & "   Where RecipeNo In ('" & RecipeNo_Matrix(Recipe_i) & "')"
+                mySql = mySql & "   And val(TimeA) >= " & S_Date_String & " "
+                mySql = mySql & "   And val(TimeA) <= " & E_Date_String & " "
+                mySql = mySql & "   )as Count_Eqp"
+                mySql = mySql & "   union all"
+                'DateTime Count
+                mySql = mySql & "   select  count(DTA)"
+                mySql = mySql & "   from ("
+                mySql = mySql & "   select distinct( " & IIf(Isdaily, "D", "TimeA") & ") as DTA"
+                mySql = mySql & "   from " & mySql _from
+                mySql = mySql & "   Where RecipeNo In ('" & RecipeNo_Matrix(Recipe_i) & "')"
+                mySql = mySql & "   And val(TimeA) >= " & S_Date_String & " "
+                mySql = mySql & "   And val(TimeA) <= " & E_Date_String & " "
+                mySql = mySql & "   )as Count_TimeA"
+                mySql = mySql & "   union all"
+                'Eqp tool
+                mySql = mySql & "   select distinct(eqp_Tool) "
+                mySql = mySql & "   from " & mySql _from
+                mySql = mySql & "   Where RecipeNo In ('" & RecipeNo_Matrix(Recipe_i) & "')"
+                mySql = mySql & "   And val(TimeA) >= " & S_Date_String & " "
+                mySql = mySql & "   And val(TimeA) <= " & E_Date_String & " "
+                mySql = mySql & "   union all"
+                'DateTime
+                mySql = mySql & "   Select distinct(" & IIf(Isdaily, "D", "TimeA") & ") "
+                mySql = mySql & "   from " & mySql _from
+                mySql = mySql & "   Where RecipeNo In ('" & RecipeNo_Matrix(Recipe_i) & "')"
+                mySql = mySql & "   And val(TimeA) >= " & S_Date_String & " "
+                mySql = mySql & "   And val(TimeA) <= " & E_Date_String & " "
+                mySql = mySql & "   ) as aa"
+
+                adapter = New OleDbDataAdapter(mySql, conn)
+                ds.Reset()
+                adapter.Fill(ds)
+                adapter.Dispose()
+                tb = ds.Tables(0)
+
+                Dim Eqp_Tool_Count As Integer = tb.Rows(0).Item(0)
+                Dim Xlables_Count As Integer = tb.Rows(1).Item(0)
+                Dim Eqp_Tool_Matrix(Eqp_Tool_Count - 1) As String
+                ReDim Xlabel(Xlables_Count - 1)
+                ReDim datalabels((Eqp_Tool_Count * 2) - 1)
+                ReDim data((Eqp_Tool_Count * 2) - 1)
+                ReDim Is_ratio((Eqp_Tool_Count * 2) - 1)
+                ReDim chartType((Eqp_Tool_Count * 2) - 1)
+                ReDim BColor((Eqp_Tool_Count * 2) - 1)
+                ReDim yaxis((Eqp_Tool_Count * 2) - 1)
+
+                For i = 0 To Eqp_Tool_Count - 1
+                    Eqp_Tool_Matrix(i) = tb.Rows(i + 2).Item(0)
+                    datalabels(i) = Eqp_Tool_Matrix(i) & "_Ratio"
+                    datalabels(i + Eqp_Tool_Count) = Eqp_Tool_Matrix(i)
+                    BColor(i) = BColor_ind(i Mod BColor_ind.Length) & "A"
+                    BColor(i + Eqp_Tool_Count) = BColor_ind(i Mod BColor_ind.Length)
+
+                    yaxis(i) = "y1"
+                    yaxis(i + Eqp_Tool_Count) = "y2"
+                Next
+
+                For i = 0 To (Eqp_Tool_Count * 2) - 1
+                    ReDim data(i)(Xlables_Count - 1)
+                    Is_ratio(i) = IIf(i <= Eqp_Tool_Count - 1, True, False)
+                    chartType(i) = IIf(i <= Eqp_Tool_Count - 1, "line", "bar")
+                Next
+
+                For i = 0 To Xlables_Count - 1
+                    ReDim Xlabel(i)(1)
+                    'Xlabel(i)(0) = tb.Rows(i + Eqp_Tool_Count + 2).Item(0)
+                    'Xlabel(i)(1) = Recipe_matrix(Recipe_i)
+                    Xlabel(i)(0) = Mid(tb.Rows(i + Eqp_Tool_Count + 2).Item(0), 5, 2) & "/" & Mid(tb.Rows(i + Eqp_Tool_Count + 2).Item(0), 7, 2)
+                    Xlabel(i)(1) = Mid(tb.Rows(i + Eqp_Tool_Count + 2).Item(0), 9, 2)
+                Next
+
+                If Isdaily Then
+                    Sql = ""
+                    Sql = Sql & " Select D,sum(Move) As MoveC ,sum(Defect)As DefectC, sum(Dim)As DimC, sum(Fail)As FailC,eqp_tool"
+                    Sql = Sql & " , "
+                    Sql = Sql & "  (DefectC/MoveC)As Defect_RatioC ,(DimC/MoveC) As Dim_RatioC,(FailC/MoveC)As Fail_RatioC"
+
+                    Sql = Sql & " from " & sql_from
+                    Sql = Sql & " Where RecipeNo In ('" & RecipeNo_Matrix(Recipe_i) & "')"
+                    Sql = Sql & " And val(TimeA) >= " & S_Date_String & " "
+                    Sql = Sql & " And val(TimeA) <=" & E_Date_String & " "
+                    Sql = Sql & " Group by Eqp_tool,D,eqp_tool" ' & RecipeNo_Matrix(Recipe_i) & ""
+                    Sql = Sql & " Order by Eqp_tool,D"
+
+                Else
+                    Sql = ""
+                    Sql = Sql & " select *"
+                    Sql = Sql & " from " & sql_from
+                    Sql = Sql & " Where RecipeNo in ('" & RecipeNo_Matrix(Recipe_i) & "')"
+                    Sql = Sql & " And val(TimeA) >= " & S_Date_String & " "
+                    Sql = Sql & " And val(TimeA) <= " & E_Date_String & " "
+                    Sql = Sql & " Order by Eqp_tool,val(TimeA) "
+
+                End If
+
+                adapter = New OleDbDataAdapter(Sql, conn)
+                ds.Reset()
+                adapter.Fill(ds)
+                adapter.Dispose()
+                tb = ds.Tables(0)
+
+                If tb.Rows.Count <> 0 Then
+
+                    If tb.Rows(0).Item(0).ToString <> DBNull.Value.ToString Then
+                        For i = 0 To tb.Rows.Count - 1
+
+                            If Isdaily Then
+                                j = 0
+                                While tb.Rows(i).Item("eqp_tool") <> Eqp_Tool_Matrix(j)
+                                    j = j + 1
+                                End While
+                                k = 0
+
+                                While Mid(tb.Rows(i).Item("D"), 5, 4) <> Mid(Xlabel(k)(0), 1, 2) & Mid(Xlabel(k)(0), 4, 2) '& Xlabel(k)(1)
+                                    k = k + 1
+                                End While
+                                data(j)(k) = tb.Rows(i).Item("Defect_RatioC")
+                                data(j + Eqp_Tool_Count)(k) = tb.Rows(i).Item("MoveC")
+                            Else
+                                j = 0
+                                While tb.Rows(i).Item("eqp_tool") <> Eqp_Tool_Matrix(j)
+                                    j = j + 1
+                                End While
+                                k = 0
+                                While Mid(tb.Rows(i).Item("TimeA"), 5, 6) <> Mid(Xlabel(k)(0), 1, 2) & Mid(Xlabel(k)(0), 4, 2) & Xlabel(k)(1)
+                                    k = k + 1
+                                End While
+                                data(j)(k) = tb.Rows(i).Item("Defect_Ratio")
+                                data(j + Eqp_Tool_Count)(k) = tb.Rows(i).Item("Move")
+                            End If
+
+                            'Table1
+                            If CheckBox1.Checked Then
+                                myrow = New TableRow
+                                For j = 0 To tb.Columns.Count - 1
+                                    If tb.Rows(i).Item(j).ToString <> DBNull.Value.ToString Then
+                                        mycell = New TableCell
+                                        mycell.Text = tb.Rows(i).Item(j)
+                                        myrow.Cells.Add(mycell)
+                                    End If
+                                Next
+                                Table1.Rows.Add(myrow)
+                            End If
+                        Next
+                    End If
+
+                    Target = myCla.getTarget(RecipeNo_Matrix(Recipe_i))
+
+                    cstext.Append(toJStext("canvasX" & RecipeNo_Matrix(Recipe_i), RecipeNo_Matrix(Recipe_i) & " - " & Recipe_matrix(Recipe_i) & " Defect Ratio Chart", _
+                                               Xlabel, _
+                                               chartType, _
+                                               datalabels, _
+                                               data, _
+                                               Is_ratio, _
+                                               BColor, _
+                                               yaxis, _
+                                               True,, Target, Target))
+
+                    Dim cell As New TableCell
+                    Dim li As New Literal
+                    li.Text = " <canvas id=" & Chr(34) & "canvasX" & RecipeNo_Matrix(Recipe_i) & Chr(34) & " style=" & Chr(34) & "width:100%;height:100%" & Chr(34) & "></canvas>"
+                    cell.Controls.Add(li)
+                    Dim row As New TableRow
+                    row.Cells.Add(cell)
+                    If Eqp_Tool_Count >= 6 Then
+                        row.Height = 450
+                    Else
+                        row.Height = 400
+                    End If
+
+                    Table2.Rows.Add(row)
+
+                    Page.ClientScript.RegisterStartupScript(Me.GetType, "key_eqp" & RecipeNo_Matrix(Recipe_i), cstext.ToString, False)
+
+                End If
+            Next
+
+            conn.Close()
+        Catch ex As Exception
+
+        End Try
+
+    End Sub

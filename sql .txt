@@ -1,0 +1,42 @@
+﻿sql = sql & "   select  *"
+
+sql = sql & "   from ("
+
+sql = sql & "   select  count(Dis_eqp_tool)"
+sql = sql & "   from ("
+sql = sql & "   select distinct( eqp_tool) as Dis_eqp_tool"
+sql = sql & "   from History"
+sql = sql & "   where recipeNo in ('59')"
+sql = sql & "   and val(TimeA) >= 201707110000"
+sql = sql & "   and val(TimeA) <= 201707111200"
+sql = sql & "   )as Count_TimeA"
+
+
+sql = sql & "   union all"
+
+sql = sql & "   select  count(Dis_TimeA)"
+sql = sql & "   from ("
+sql = sql & "   select distinct( TimeA) as Dis_TimeA"
+sql = sql & "   from History"
+sql = sql & "   where recipeNo in ('59')"
+sql = sql & "   and val(TimeA) >= 201707110000"
+sql = sql & "   and val(TimeA) <= 201707111200"
+sql = sql & "   )as Count_TimeA"
+
+sql = sql & "   union all"
+
+sql = sql & "   select distinct(eqp_Tool) "
+sql = sql & "   from History"
+sql = sql & "   where recipeNo in ('59')
+sql = sql & "   and val(TimeA) >= 201707110000"
+sql = sql & "   and val(TimeA) <= 201707111200"
+
+sql = sql & "   union all"
+
+sql = sql & "   select distinct(TimeA) "
+sql = sql & "   from History"
+sql = sql & "   where recipeNo in ('59')"
+sql = sql & "   and val(TimeA) >= 201707110000"
+sql = sql & "   and val(TimeA) <= 201707111200"
+
+sql = sql & "   ) as aa""

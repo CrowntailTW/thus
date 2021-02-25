@@ -1,0 +1,34 @@
+﻿
+若要建立 DataSet 的複本，其中包含結構描述和只表示 Added、Modified 或 Deleted 資料列的資料，請使用 DataSet 的 GetChanges 方法。 呼叫 GetChanges 時，您也可以使用 GetChanges 傳遞 DataRowState 的值，而只傳回具有指定資料列狀態的資料列。 下列程式碼範例顯示如何在呼叫 GetChanges 時傳遞 DataRowState。
+
+' Copy all changes.
+Dim changeDataSet As DataSet = customerDataSet.GetChanges()
+' Copy only new rows.
+Dim addedDataSetAs DataSet = _
+    customerDataSet.GetChanges(DataRowState.Added)
+
+
+************************************************************************
+
+若要建立只包含結構描述的 DataSet 複本，請使用 DataSet 的 Clone 方法。 您也可以使用 DataTable 的 ImportRow 方法，將現有資料列加入複製的 DataSet。 ImportRow 會將資料、資料列狀態和資料列版本資訊加入至指定資料表。 資料行值只會被加入資料行名稱相符且資料型別相容之處。
+下列程式碼範例建立 DataSet 的複製品，然後將原始 DataSet 的資料列加入 DataSet 複製品中的 Customers 資料表，該表中 CountryRegion 資料行的值為 "Germany"。
+
+Dim customerDataSet As New DataSet
+        customerDataSet.Tables.Add(New DataTable("Customers"))
+        customerDataSet.Tables("Customers").Columns.Add("Name", GetType(String))
+        customerDataSet.Tables("Customers").Columns.Add("CountryRegion", GetType(String))
+        customerDataSet.Tables("Customers").Rows.Add("Juan", "Spain")
+        customerDataSet.Tables("Customers").Rows.Add("Johann", "Germany")
+        customerDataSet.Tables("Customers").Rows.Add("John", "UK")
+
+Dim germanyCustomers As DataSet = customerDataSet.Clone()
+
+Dim copyRows() As DataRow = _
+  customerDataSet.Tables("Customers").Select("CountryRegion = 'Germany'")
+
+Dim customerTable As DataTable = germanyCustomers.Tables("Customers")
+Dim copyRow As DataRow
+
+For Each copyRow In copyRows
+  customerTable.ImportRow(copyRow)
+Next

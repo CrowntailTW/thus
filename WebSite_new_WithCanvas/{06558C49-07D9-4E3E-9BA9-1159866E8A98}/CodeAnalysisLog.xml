@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="C:\Users\AUO-L6A\AppData\Local\Temp\tmpBFF8.tmp.cadir\bin\App_Code.dll">
+   <Modules>
+    <Module Name="app_code.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Class_Sql" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CreateTable(System.String,System.String,System.String[],System.String[])" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="Module_Sql.vb" Line="87">傳遞給 'Class_Sql.CreateTable(String, String, String(), String())' 中的 'OleDbCommand.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'tablename'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetDB(System.Data.OleDb.OleDbConnection,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="Module_Sql.vb" Line="26">傳遞給 'Class_Sql.GetDB(OleDbConnection, String)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'sql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetDB(System.Data.OleDb.OleDbConnection,System.String,System.Data.DataSet)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="Module_Sql.vb" Line="44">傳遞給 'Class_Sql.GetDB(OleDbConnection, String, DataSet)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'sql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Class1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ds2ChipDistribution(System.Data.DataSet,System.String,System.String,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="myClass.vb" Line="898">方法 'Class1.ds2ChipDistribution(DataSet, String, String, Boolean)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 898</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="myClass.vb" Line="880">傳遞給 'Class1.ds2ChipDistribution(DataSet, String, String, Boolean)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="myClass.vb" Line="895">傳遞給 'Class1.ds2ChipDistribution(DataSet, String, String, Boolean)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ds2SheetDistribution(System.Data.DataSet,System.String,System.String,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="myClass.vb" Line="1209">方法 'Class1.ds2SheetDistribution(DataSet, String, String, Boolean)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1209</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="myClass.vb" Line="1186">傳遞給 'Class1.ds2SheetDistribution(DataSet, String, String, Boolean)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas\App_Code" File="myClass.vb" Line="1206">傳遞給 'Class1.ds2SheetDistribution(DataSet, String, String, Boolean)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\AUO-L6A\AppData\Local\Temp\tmpBFF8.tmp.cadir\bin\App_Web_ourz0c5h.dll">
+   <Modules>
+    <Module Name="app_web_ourz0c5h.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CutInfo" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DefectDim_new(System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="Mileage.aspx.vb" Line="179">傳遞給 'CutInfo.DefectDim_new(Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\AUO-L6A\AppData\Local\Temp\tmpBFF8.tmp.cadir\bin\App_Web_uqb1t4yq.dll">
+   <Modules>
+    <Module Name="app_web_uqb1t4yq.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CCI_History" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Button_Submit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="CCI History.aspx.vb" Line="173">傳遞給 'CCI_History.Button_Submit_Click(Object, EventArgs)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'mySql &amp; Interaction.IIf(Me.CheckBox1.Checked, ", " AND PanelID in " &amp; Sql_PanelID)', 'mySql &amp; Interaction.IIf(Me.CheckBox1.Checked, ", " WHERE PanelID in " &amp; Sql_PanelID)'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ChippingChart" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DefectDim_ByModel_new_nonChipping(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="ChippingChart.aspx.vb" Line="483">方法 'ChippingChart.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 483</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="ChippingChart.aspx.vb" Line="483">方法 'ChippingChart.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 483</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="ChippingChart.aspx.vb" Line="477">傳遞給 'ChippingChart.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'Me.stringRecipeNoEtE', 'S_Date_String', 'E_Date_String', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="ChippingChart.aspx.vb" Line="365">傳遞給 'ChippingChart.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_new_nonChiping(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="ChippingChart.aspx.vb" Line="141">傳遞給 'ChippingChart.DefectDim_new_nonChiping(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'E_Date_String', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'mySql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EtE_Dim30_Monitor" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#aaaaaaaaaaaaaaaaaaaaDefectDim_M240UAN02(System.Boolean,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="2004">傳遞給 'EtE_Dim30_Monitor.aaaaaaaaaaaaaaaaaaaaDefectDim_M240UAN02(Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'tmp_sql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_ByModel_new(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="509">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 509</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="509">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 509</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="503">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo_Matrix(Recipe_shift)', 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String', 'RecipeNo_Matrix(Recipe_shift)', 'RecipeNo_Matrix(Recipe_shift)', 'RecipeNo_Matrix(Recipe_shift)'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="390">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_ByModel_new_M24U2Loose(System.Boolean,System.Boolean,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1792">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new_M24U2Loose(Boolean, Boolean, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1792</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1786">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_M24U2Loose(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo_Matrix(Recipe_shift)', 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String', 'RecipeNo_Matrix(Recipe_shift)'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1707">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_M24U2Loose(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_ByModel_new_nonChipping(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1131">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1131</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1131">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1131</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1125">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'Me.stringRecipeNoEtE', 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1013">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChipping(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_ByModel_new_nonChippinga(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1475">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChippinga(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1475</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1475">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChippinga(String, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1475</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1469">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChippinga(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'Me.stringRecipeNoEtE', 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="1357">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_nonChippinga(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_new(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="189">傳遞給 'EtE_Dim30_Monitor.DefectDim_new(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'E_Date_String', 'mySql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_new_nonChiping(System.String,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor_new.aspx.vb" Line="803">傳遞給 'EtE_Dim30_Monitor.DefectDim_new_nonChiping(String, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'E_Date_String', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'Me.stringRecipeNoEtE', 'mySql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="YieldFeedback" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Submit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="YieldFeedback.aspx.vb" Line="29">傳遞給 'YieldFeedback.Submit_Click(Object, EventArgs)' 中的 'OleDbCommand.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'Me.TextBox1.Text'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="段差NG_ID" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Submit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="段差NG ID.aspx.vb" Line="101">傳遞給 '段差NG_ID.Submit_Click(Object, EventArgs)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'tmp_sql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\AUO-L6A\AppData\Local\Temp\tmpBFF8.tmp.cadir\bin\App_Web_zheo1one.dll">
+   <Modules>
+    <Module Name="app_web_zheo1one.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Defect_Distribution" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Button_Submit_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="Defect Distribution.aspx.vb" Line="69">傳遞給 'Defect_Distribution.Button_Submit_Click(Object, EventArgs)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'PanelID'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EtE_Dim30_Monitor" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DefectDim_ByModel_new(System.Boolean,System.Boolean,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="738">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new(Boolean, Boolean, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 738</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="738">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new(Boolean, Boolean, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 738</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="732">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo_Matrix(Recipe_shift)', 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String', 'RecipeNo_Matrix(Recipe_shift)'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="650">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_ByModel_new_M24U2Loose(System.Boolean,System.Boolean,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="1036">方法 'EtE_Dim30_Monitor.DefectDim_ByModel_new_M24U2Loose(Boolean, Boolean, Date, Date)' 中可以多次處置物件 'conn'。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1036</Issue>
+            </Message>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="1030">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_M24U2Loose(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'RecipeNo_Matrix(Recipe_shift)', 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String', 'RecipeNo_Matrix(Recipe_shift)'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="951">傳遞給 'EtE_Dim30_Monitor.DefectDim_ByModel_new_M24U2Loose(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'Strings.Format(DateAndTime.DateAdd(DateInterval.Day, -1, nn), "yyyyMMddHH00")', 'E_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_M240UAN02(System.Boolean,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="255">傳遞給 'EtE_Dim30_Monitor.DefectDim_M240UAN02(Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'tmp_sql'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DefectDim_new(System.Boolean,System.Boolean,System.DateTime,System.DateTime)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="EtE Dim30 Monitor.aspx.vb" Line="440">傳遞給 'EtE_Dim30_Monitor.DefectDim_new(Boolean, Boolean, Date, Date)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'S_Date_String', 'E_Date_String'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="FullImage" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#comp(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="NonBreaking">
+             <Issue Certainty="33" Level="CriticalError" Path="D:\WebSite_new_WithCanvas" File="FullImage.aspx.vb" Line="183">'FullImage.comp(String)' 會呼叫具有 LinkDemand 的 'Process.Start(String, String)' 程式碼內部。藉由進行這個呼叫，'Process.Start(String, String)' 會間接對使用者程式碼公開。請檢查下列呼叫堆疊是否會公開規避安全性保護的方式: &#xD;&#xA;   -&gt;'FullImage.comp(String)'&#xD;&#xA;   -&gt;'FullImage.comp(String)'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Parts" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GridView1_RowCommand(System.Object,System.Web.UI.WebControls.GridViewCommandEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="Parts.aspx.vb" Line="83">傳遞給 'Parts.GridView1_RowCommand(Object, GridViewCommandEventArgs)' 中的 'OleDbCommand.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'Conversions.ToString(amountNew)', '位置', 'Conversions.ToString(項次)'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#log(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.Int32,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="Parts.aspx.vb" Line="124">傳遞給 'Parts.log(String, String, String, String, String, String, Integer, Integer, Integer, String)' 中的 'OleDbCommand.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 '項次', '品名', '用途', '開始存放時間', '位置', 'ip', 'New String(24)(14)', 'Conversions.ToString(amountOld)', 'Conversions.ToString(amountNew)', 'Conversions.ToString(amount)', '上機上架'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Pressure_Info" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#update_pressure(System.DateTime,System.DateTime,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2018-02-26 04:13:40Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\WebSite_new_WithCanvas" File="Pressure_Info.aspx.vb" Line="78">傳遞給 'Pressure_Info.update_pressure(Date, Date, String)' 中的 'OleDbDataAdapter.New(String, OleDbConnection)' 的查詢字串可能包含下列變數 'Strings.Format(FromDate, "yyyyMMddHHmm")', 'Strings.Format(ToDate, "yyyyMMddHHmm")'。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122">
+   <Name>不要間接公開具有連結要求的方法</Name>
+   <Description>不要用未執行安全性檢查的方法包裝由 LinkDemand 保護的方法。LinkDemand 會檢查立即呼叫者的使用權限，而不會檢查呼叫堆疊中所有呼叫端的使用權限。在這種情況下，所檢查的將是包裝函式方法的使用權限。如果包裝函式方法本身不會檢查呼叫堆疊中較高呼叫端的使用權限，惡意程式碼就有可能在不具備使用權限的情況下，就能執行這個包裝的函式。</Description>
+   <Resolution Name="Default">{0} 會呼叫具有 LinkDemand 的 {1} 程式碼內部。藉由進行這個呼叫，{1} 會間接對使用者程式碼公開。請檢查下列呼叫堆疊是否會公開規避安全性保護的方式: {2}</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182303.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="33">CriticalError</MessageLevel>
+   <File Name="securityrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="不要多次處置物件的 Dispose 方法" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>不要多次處置物件的 Dispose 方法</Name>
+   <Description>正確實作的 Dispose 方法即使呼叫多次，也不會擲回例外狀況。但不保證一定如此，為避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。</Description>
+   <Resolution Name="Default">方法 {1} 中可以多次處置物件 {0}。若要避免產生 System.ObjectDisposedException，您不應該對物件呼叫多次 Dispose。: Lines: 1792</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="必須檢視 SQL 查詢中是否有安全性弱點" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>必須檢視 SQL 查詢中是否有安全性弱點</Name>
+   <Description>根據使用者輸入建構而成的 SQL 命令字串容易受到 SQL 插入式攻擊的威脅。Microsoft SQL Server 和其他資料庫伺服器支援預存程序和參數化 SQL 查詢，可減少插入式攻擊的風險。</Description>
+   <Resolution Name="WithNonLiterals">傳遞給 {1} 中的 {0} 的查詢字串可能包含下列變數 {2}。如果這其中任何變數來自使用者輸入，請考慮使用預存程序或參數化 SQL 查詢，而不要用字串串連的方式建立查詢。</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">分類</String>
+  <String Key="Certainty">確實性</String>
+  <String Key="CollapseAll">全部摺疊</String>
+  <String Key="CheckId">檢查 ID</String>
+  <String Key="Error">錯誤</String>
+  <String Key="Errors">錯誤</String>
+  <String Key="ExpandAll">全部展開</String>
+  <String Key="Help">說明</String>
+  <String Key="Line">行</String>
+  <String Key="Messages">訊息</String>
+  <String Key="LocationNotStoredInPdb">[位置未儲存在 PDB]</String>
+  <String Key="Project">專案</String>
+  <String Key="Resolution">解析度</String>
+  <String Key="Rule">規則</String>
+  <String Key="RuleFile">規則檔</String>
+  <String Key="RuleDescription">規則描述</String>
+  <String Key="Source">來源</String>
+  <String Key="Status">狀態</String>
+  <String Key="Target">目標</String>
+  <String Key="Warning">警告</String>
+  <String Key="Warnings">警告</String>
+  <String Key="ReportTitle">程式碼分析報告</String>
+ </Localized>
+</FxCopReport>

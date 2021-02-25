@@ -1,0 +1,2 @@
+
+<!--[if lte IE 8]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
